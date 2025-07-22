@@ -15,7 +15,13 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            "sourceType": "module"
+          },
+        },
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/i,
@@ -46,7 +52,7 @@ module.exports = {
         implementation: ImageMinimizerPlugin.imageminGenerate,
         options: {
           plugins: [
-            ['mozjpeg', { quality: 90 }],
+            ['mozjpeg', { quality: 70 }],
             ['pngquant', { quality: [0.5, 0.8] }],
           ],
         },
@@ -55,4 +61,3 @@ module.exports = {
   ],
   mode: 'production',
 };
-
